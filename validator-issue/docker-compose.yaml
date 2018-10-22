@@ -1,0 +1,89 @@
+version: '2.2'
+services:
+  geth0:
+    build: "./geth"
+    command: ./start.sh
+    volumes:
+    - "./data/qdata0:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.100
+    ports:
+    - "8000:8545"
+  geth1:
+    build: "./geth"
+    command: ./start.sh
+    volumes:
+    - "./data/qdata1:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.101
+    ports:
+    - "8001:8545"
+  geth2:
+    build: "./geth"
+    command: ./start.sh
+    volumes:
+    - "./data/qdata2:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.102
+    ports:
+    - "8002:8545"
+  geth3:
+    build: "./geth"
+    command: ./start.sh
+    volumes:
+    - "./data/qdata3:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.103
+    ports:
+    - "8003:8545"
+  const0:
+    build: "./constellation"
+    command: "./start.sh 172.16.239.110"
+    volumes:
+    - "./data/qdata2:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.110
+  const1:
+    build: "./constellation"
+    command: "./start.sh 172.16.239.111"
+    volumes:
+    - "./data/qdata2:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.111
+  const2:
+    build: "./constellation"
+    command: "./start.sh 172.16.239.112"
+    volumes:
+    - "./data/qdata2:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.112
+  const3:
+    build: "./constellation"
+    command: "./start.sh 172.16.239.113"
+    volumes:
+    - "./data/qdata2:/qdata"
+    - "./data/shared:/shared"
+    networks:
+      quorum-net:
+        ipv4_address: 172.16.239.113
+networks:
+  quorum-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.239.0/24
