@@ -1,3 +1,5 @@
 **/geth.ipc
 validator-issue/**/geth
 validator-issue/**/constellation
+increase-blocktime/**/geth
+increase-blocktime/**/constellation
